@@ -47,7 +47,7 @@ padding:15px;
         <td><%= wagonr.Mileage %></td>
         <td><%= wagonr.price %></td>
         <td><%= wagonr.name %></td>
-        <td><%= wagonr.base_link %></td>
+        <td><%= link_to 'Original Page', wagonr.base_link[5..-1] %></td>
         <td><%= link_to 'Show', wagonr %></td>
         <!-- <td><%#= link_to 'Edit', edit_wagonr_path(wagonr) %></td> -->
         <!-- <td><%#= link_to 'Destroy', wagonr, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

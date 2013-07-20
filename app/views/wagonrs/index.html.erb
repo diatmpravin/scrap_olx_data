@@ -16,6 +16,11 @@ padding:15px;
 
 <h1>Listing wagonrs</h1>
 
+<%= form_tag wagonrs_path, :method => :get do -%>
+  <b>Model:</b><%= select_tag :model, options_for_select(@model.map(&:model.to_proc)) %>
+  <%= submit_tag 'Get List' %>
+<% end -%>
+</br>
 <table>
   <thead>
     <tr>

@@ -7,8 +7,12 @@ class WagonrsController < ApplicationController
   # GET /wagonrs
   # GET /wagonrs.json
   def index
-    # @wagonrs = Wagonr.all
-    @wagonrs = Wagonr.where(:model => '2002')
+    @model = Wagonr.select(:model).distinct
+    if params[:model].nil?
+      @wagonrs = Wagonr.all
+    else
+      @wagonrs = Wagonr.where(:model => params[:model])
+    end
   end
 
   # GET /wagonrs/1
@@ -35,7 +39,7 @@ class WagonrsController < ApplicationController
       doc = Nokogiri::HTML(open(url))
       for xxx in 1..30
         _href = doc.xpath("html/body/div/div[2]/div[3]/div[3]/div[6]/div/div["+xxx.to_s+"]/div[2]/h3/a").map { |link| link['href'] } 
-        unless _href.nil?
+        if _href.size > 0
           doc1 = Nokogiri::HTML(open(_href.first))
           
           @name = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").text.gsub('à¤°', '') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").nil?

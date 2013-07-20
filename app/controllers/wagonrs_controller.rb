@@ -7,7 +7,8 @@ class WagonrsController < ApplicationController
   # GET /wagonrs
   # GET /wagonrs.json
   def index
-    @wagonrs = Wagonr.all
+    # @wagonrs = Wagonr.all
+    @wagonrs = Wagonr.where(:model => '2002')
   end
 
   # GET /wagonrs/1
@@ -34,18 +35,20 @@ class WagonrsController < ApplicationController
       doc = Nokogiri::HTML(open(url))
       for xxx in 1..30
         _href = doc.xpath("html/body/div/div[2]/div[3]/div[3]/div[6]/div/div["+xxx.to_s+"]/div[2]/h3/a").map { |link| link['href'] } 
-        doc1 = Nokogiri::HTML(open(_href.first))
-        
-        @name = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").text.gsub('à¤°', '') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").nil?
-        @price = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/strong").nil?
-        @mileage = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[2]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[2]/strong").nil?
-        @model = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[3]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[3]/strong").nil?
-        # @posted_date = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[4]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[4]/strong").nil?
+        unless _href.nil?
+          doc1 = Nokogiri::HTML(open(_href.first))
+          
+          @name = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").text.gsub('à¤°', '') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div/div").nil?
+          @price = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/strong").nil?
+          @mileage = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[2]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[2]/strong").nil?
+          @model = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[3]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[3]/strong").nil?
+          # @posted_date = doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[4]/strong").text.gsub('à¤°', ' ') unless doc1.at_xpath("/html/body/div/div[2]/div[5]/div/div[3]/div[2]/div[2]/div[4]/strong").nil?
 
-        unless @name.nil? || @price.nil? || @mileage.nil? || @model.nil?# || @posted_date.nil?
-          @final = Wagonr.create(:name => @name.strip, :price => @price.strip, :model => @model.strip, :Mileage => @mileage.strip)
-          # @final = Wagonr.create(:name => @name.strip, :price => @price.strip, :model => @model.strip, :Mileage => @mileage.strip, :posted_date => @posted_date)
-        end
+          unless @name.nil? || @price.nil? || @mileage.nil? || @model.nil?# || @posted_date.nil?
+            @final = Wagonr.create(:name => @name.strip, :price => @price.strip, :model => @model.strip, :Mileage => @mileage.strip, :base_link => _href)
+            # @final = Wagonr.create(:name => @name.strip, :price => @price.strip, :model => @model.strip, :Mileage => @mileage.strip, :posted_date => @posted_date)
+          end
+        end  
       end
     end
     

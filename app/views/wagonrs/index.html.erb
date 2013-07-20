@@ -19,32 +19,33 @@ padding:15px;
 <table>
   <thead>
     <tr>
-      <!-- <th>Olx</th>
-      <th>Posted date</th>-->
+       <!-- <th>Olx</th> -->
+      <th>Sl. No.</th>
       <th>Model</th>
       <th>Mileage</th>
       <th>Price</th>
       <th>Name</th>
-      <!-- <th>Base link</th> -->
+      <th>Base link</th>
       <th></th>
-      <th></th>
-      <th></th>
+      <!-- <th></th> -->
+      <!-- <th></th> -->
     </tr>
   </thead>
 
   <tbody>
+    <% i = 0 %>
     <% @wagonrs.each do |wagonr| %>
       <tr>
-        <!-- <td><%= wagonr.olx_id %></td>
-        <td><%= wagonr.posted_date %></td>-->
+        <!-- <td><%= wagonr.olx_id %></td>-->
+        <td><%= i += 1 %></td>
         <td><%= wagonr.model %></td>
         <td><%= wagonr.Mileage %></td>
         <td><%= wagonr.price %></td>
         <td><%= wagonr.name %></td>
-        <!-- <td><%= wagonr.base_link %></td> -->
+        <td><%= wagonr.base_link %></td>
         <td><%= link_to 'Show', wagonr %></td>
-        <td><%= link_to 'Edit', edit_wagonr_path(wagonr) %></td>
-        <td><%= link_to 'Destroy', wagonr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%#= link_to 'Edit', edit_wagonr_path(wagonr) %></td> -->
+        <!-- <td><%#= link_to 'Destroy', wagonr, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

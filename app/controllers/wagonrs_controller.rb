@@ -8,6 +8,8 @@ class WagonrsController < ApplicationController
   # GET /wagonrs.json
   def index
     @model = Wagonr.select(:model).distinct
+    @mod = @model.map(&:model.to_proc)
+    @m = @mod.sort {|x,y| y<=>x}
     if params[:model].nil?
       @wagonrs = Wagonr.all
     else

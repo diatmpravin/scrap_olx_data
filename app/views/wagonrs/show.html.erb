@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Olx:</strong>
+  <%= @wagonr.olx_id %>
+</p>
+
+<p>
+  <strong>Posted date:</strong>
+  <%= @wagonr.posted_date %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @wagonr.model %>
+</p>
+
+<p>
+  <strong>Mileage:</strong>
+  <%= @wagonr.Mileage %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @wagonr.price %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @wagonr.name %>
+</p>
+
+<p>
+  <strong>Base link:</strong>
+  <%= @wagonr.base_link %>
+</p>
+
+<%= link_to 'Edit', edit_wagonr_path(@wagonr) %> |
+<%= link_to 'Back', wagonrs_path %>

@@ -1,0 +1,55 @@
+<style>
+table, td, th
+{
+border:1px solid green;
+}
+th
+{
+background-color:green;
+color:white;
+}
+td
+{
+padding:15px;
+}
+</style>
+
+<h1>Listing wagonrs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <!-- <th>Olx</th>
+      <th>Posted date</th>-->
+      <th>Model</th>
+      <th>Mileage</th>
+      <th>Price</th>
+      <th>Name</th>
+      <!-- <th>Base link</th> -->
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wagonrs.each do |wagonr| %>
+      <tr>
+        <!-- <td><%= wagonr.olx_id %></td>
+        <td><%= wagonr.posted_date %></td>-->
+        <td><%= wagonr.model %></td>
+        <td><%= wagonr.Mileage %></td>
+        <td><%= wagonr.price %></td>
+        <td><%= wagonr.name %></td>
+        <!-- <td><%= wagonr.base_link %></td> -->
+        <td><%= link_to 'Show', wagonr %></td>
+        <td><%= link_to 'Edit', edit_wagonr_path(wagonr) %></td>
+        <td><%= link_to 'Destroy', wagonr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wagonr', new_wagonr_path %>

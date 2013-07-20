@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  olx_id: MyString
+  posted_date: MyString
+  model: MyString
+  Mileage: MyString
+  price: MyString
+  name: MyString
+  base_link: MyString
+
+two:
+  olx_id: MyString
+  posted_date: MyString
+  model: MyString
+  Mileage: MyString
+  price: MyString
+  name: MyString
+  base_link: MyString
